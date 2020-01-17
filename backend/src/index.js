@@ -1,6 +1,8 @@
 const express = require('express');
-
+const mongoose = require('mongoose');
 const app = express();
+
+mongoose.connect('<connection_string>')
 
 app.use(express.json()); // body with json format
 
