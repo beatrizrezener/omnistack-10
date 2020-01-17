@@ -1,27 +1,13 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const routes = require('./routes');
+
 const app = express();
 
 mongoose.connect('<connection_string>')
 
-app.use(express.json()); // body with json format
-
-// HTTP Methods: GET, POST, PUT, DELETE
-
-// Params types:
-// Query params: req.query (filters, orders, pagination, ...) - visible on URLs
-// Route params: request.params (identify resource on update or delete)
-// Body: request.body (Data for resource creation or update)
-
-app.get('/', (request, response) => {
-    return response.json({
-        message: "Hello World! :D"
-    });
-});
-
-app.post('/users', (request, response) => {
-    console.log(request.body);
-    return response.json({ message: 'Hello World' });
-});
+// body with json format, need to be before routes
+app.use(express.json()); 
+app.use(routes);
 
 app.listen(3333);
